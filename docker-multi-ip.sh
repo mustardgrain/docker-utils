@@ -1,5 +1,5 @@
 #!/bin/sh
 
-for container in `docker ps -a | grep -v "CONTAINER" | awk '{print $NF}'` ; do
-  echo "$container: $(docker inspect -f '{{ .NetworkSettings.IPAddress }}' $container)"
+for container in `docker ps -a -q` ; do
+  docker inspect --format '{{ .Name }}: {{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $container | sed 's/\///'
 done
