@@ -35,10 +35,14 @@ if [ "$(uname)" = 'Darwin' ] ; then
       echo ""
       echo "Please run the following commands to fix the issue:"
       echo ""
-      echo "     docker system prune -a -f"
+      echo "     docker system prune --all --volumes --force"
       echo "     rm -f $image_file"
       echo ""
-      echo "Then restart Docker and run $(basename "$0") again."
+      echo "Then restart Docker."
+      echo ""
+      echo "Or just run this to do all of the above:"
+      echo ""
+      echo "     docker-nuclear-option.sh"
       exit 3
     fi
   done
